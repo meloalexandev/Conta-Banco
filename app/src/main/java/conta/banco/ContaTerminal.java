@@ -3,12 +3,46 @@
  */
 package conta.banco;
 
+import java.util.Scanner;
+
 public class ContaTerminal {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+   
 
     public static void main(String[] args) {
-        System.out.println(new ContaTerminal().getGreeting());
-    }
+        //Criando o objeto Scanner para capturar os dados do usuario 
+        Scanner scanner = new Scanner(System.in);
+
+        //Declarando as variáveis conforme o cenário
+        int numeroConta;
+        String agencia;
+        String nomeCliente;
+        double saldo;
+
+
+        //Solicitando e capturando os dados via terminal
+        System.out.println("Por favor,digite o número da Agência");
+        agencia = scanner.nextLine();
+
+        System.out.println("Por favor,digite o número da Conta:");
+        numeroConta = scanner.nextInt();
+        scanner.nextLine(); 
+
+        System.out.println("Por favor ,digite o nome do Cliente");
+        nomeCliente = scanner.nextLine();
+
+
+        System.out.println("Por favor,digite o saldo");
+        saldo = scanner.nextDouble();
+
+
+        //Exibindo a mensagem final
+        String mensagemString =  "Olá" +  nomeCliente + ", obrigado por criar uma conta em nosso banco, sua agêcia é  " + agencia + ",conta" + numeroConta +  "e seu saldo é" + saldo +  "já está disponível para saque.";
+
+        System.out.println(mensagemString);
+
+        //Fechando o Scanner
+
+    scanner.close();
+    
+}
 }
