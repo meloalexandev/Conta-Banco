@@ -1,0 +1,176 @@
+# Conta-Banco
+
+Aplicativo de terminal em **Java** para simular a abertura de uma conta bancária: lê **agência**, **número da conta**, **nome do cliente** e **saldo inicial**, e então imprime uma mensagem de boas‑vindas com os dados informados.
+
+> **Stack**: Java 21 · Gradle 8.8 (wrapper) · JUnit 5 (estruturado)
+
+---
+
+## ✨ Funcionalidades
+
+* Coleta dados via **Scanner** no terminal.
+* Exibe mensagem final com agência, conta, cliente e saldo.
+
+> **Arquivo principal**: `app/src/main/java/conta/banco/ContaTerminal.java`
+
+---
+
+## 📦 Estrutura do projeto
+
+```
+Conta-Banco/
+├─ app/
+│  ├─ build.gradle.kts
+│  └─ src/
+│     ├─ main/java/conta/banco/ContaTerminal.java
+│     └─ test/java/conta/banco/AppTest.java
+├─ gradle/
+│  ├─ libs.versions.toml
+│  └─ wrapper/
+│     ├─ gradle-wrapper.jar
+│     └─ gradle-wrapper.properties (Gradle 8.8)
+├─ gradlew / gradlew.bat
+└─ settings.gradle.kts
+```
+
+---
+
+## ✅ Pré‑requisitos
+
+* **Java Development Kit (JDK) 21+** instalado (confira com `java -version`).
+* **Gradle** não é necessário globalmente: o projeto usa **Gradle Wrapper** (`./gradlew`).
+
+---
+
+## ▶️ Como executar
+
+> O projeto já está configurado com o plugin `application`. Para rodar via Gradle, é necessário apontar a classe principal correta.
+
+### 1) Ajustar a classe principal (uma vez)
+
+No arquivo `app/build.gradle.kts`, garanta que a seção `application` aponte para a classe `ContaTerminal`:
+
+```kts
+application {
+    // Classe principal do aplicativo
+    mainClass = "conta.banco.ContaTerminal"
+}
+```
+
+> Dica: Se preferir criar uma classe `App` com `main(String[] args)`, também funciona — basta manter o `mainClass` em sincronia.
+
+### 2) Rodar o app
+
+* **macOS / Linux**
+
+  ```bash
+  ./gradlew run
+  ```
+* **Windows (PowerShell ou CMD)**
+
+  ```bat
+  gradlew.bat run
+  ```
+
+### 3) Executar sem Gradle (opcional)
+
+Compilação e execução diretas com `javac` e `java`:
+
+```bash
+javac -d out $(find app/src/main/java -name "*.java")
+java -cp out conta.banco.ContaTerminal
+```
+
+> No Windows, substitua o `find` por `dir /s /b app\src\main\java\*.java`.
+
+---
+
+## 🧪 Testes
+
+O template inclui testes com **JUnit 5** (`app/src/test/java/conta/banco/AppTest.java`).
+
+* Para executar:
+
+  ```bash
+  ./gradlew test
+  ```
+* **Atenção**: o teste de exemplo referencia a classe `App`. Você pode:
+
+  * Atualizar o teste para validar `ContaTerminal`; **ou**
+  * Criar uma classe `App` que delegue para `ContaTerminal`.
+
+---
+
+## 🖥️ Exemplo de execução
+
+```
+Por favor,digite o número da Agência
+> 0001
+Por favor,digite o número da Conta:
+> 12345
+Por favor ,digite o nome do Cliente
+> Maria Silva
+Por favor,digite o saldo
+> 2500.00
+
+Olá Maria Silva, obrigado por criar uma conta em nosso banco, sua agêcia é 0001,conta 12345 e seu saldo é 2500.00 já está disponível para saque.
+```
+
+> Sugestões de melhoria:
+>
+> * Inserir espaços e pontuação na mensagem final (ex.: `Olá, Maria Silva! ... sua agência é 0001, conta 12345, e seu saldo é R$ 2.500,00 ...`).
+> * Usar `NumberFormat`/`Locale` para formatar valores monetários em **PT‑BR**.
+
+---
+
+## 🚀 Roadmap sugerido
+
+* [ ] Corrigir `mainClass` para `conta.banco.ContaTerminal`.
+* [ ] Validar entradas (número da conta, formato da agência, saldo não negativo).
+* [ ] Tratar exceções de `Scanner` e entradas inválidas.
+* [ ] Internacionalização (mensagens PT‑BR/EN).
+* [ ] Criar classe de domínio `Conta` (agência, número, titular, saldo) com operações:
+
+  * [ ] `depositar(double valor)`
+  * [ ] `sacar(double valor)` (com validação)
+  * [ ] `consultarSaldo()`
+* [ ] Adicionar testes unitários para as regras de negócio.
+* [ ] Configurar **GitHub Actions** para CI (build + testes).
+
+---
+
+## 🤝 Contribuindo
+
+Contribuições são bem‑vindas! Siga estes passos:
+
+1. Faça um **fork** do repositório
+2. Crie uma branch para sua feature/fix: `git checkout -b feature/minha-feature`
+3. Commit: `git commit -m "feat: minha feature"`
+4. Push: `git push origin feature/minha-feature`
+5. Abra um **Pull Request**
+
+Use **Conventional Commits** quando possível.
+
+---
+
+## 📄 Licença
+
+Este projeto ainda **não define uma licença**. Recomenda‑se adicionar uma licença livre (por ex., **MIT**). Você pode criar um arquivo `LICENSE` com o texto da licença escolhida.
+
+---
+
+## 👤 Autor
+
+**Alexandre Mata Melo**
+
+* GitHub: [@meloalexandev](https://github.com/meloalexandev)
+
+---
+
+## 📚 Referências úteis
+
+* Gradle – Java Application Plugin
+* JUnit 5 – User Guide
+* Formatação monetária em Java (`NumberFormat`, `Locale`)
+
+> Dúvidas ou sugestões? Abra uma issue ou fale comigo! 🙌
